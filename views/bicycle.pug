@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	a(href="/") <-
+	br
+	- var results = [bicycle1 = {wheels: 2, color: "red", brand: "Giant"}, bicycle2 = {wheels: 2, color: "black", brand: "Trek"}, bicycle3 = {wheels: 0, color: "rust", brand: "Dilapitated"}];
+	
+	script.
+		function buy(i){
+			alert("You purchased item "+i);
+		}
+
+	div(class="container-fluid")
+		div(class="row")
+			each item,index in results
+				div(class="col-sm-2", onClick=`buy(${index})`) Bicycle #{index} - Wheels: #{item.wheels}, Color: #{item.color}, Brand: #{item.brand}

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	h1= title
+	button(type="button", class="btn btn-secondary" onClick="reduce()") Button
+	div(id="use") Take some away
+	script.
+		let current = 11;
+		let quantity = 2;
+		function reduce()
+		{
+			current -= quantity
+			if(current < 0)
+			{
+				current = 0;
+			}
+			document.getElementById("use").textContent = "Reduced by " + quantity + " to " + current + ".";
+		}
+  	
+	br
+	a(href="/bicycle") Bicycle Search Results

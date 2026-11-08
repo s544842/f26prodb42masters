@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	- var image_names = ["b1.jpeg", "b2.jpeg", "b3.jpeg", "b4.jpeg", "b5.jpeg", "b6.jpeg"];
+	- for (i = 0; i < 5; i++) {
+		- var src = "/images/" + image_names[Math.floor(Math.random()*5)];
+		img(src=`${src}`, alt=`${image_names[i]}`, height="300px", width="300px")
+	- }
