@@ -7,5 +7,7 @@ Class Resource: bicycle()
 Attributes:
 
 wheels(integer)
+
 color(string)
+
 brand(string)
