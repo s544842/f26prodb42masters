@@ -18,8 +18,20 @@ exports.bicycle_detail = function(req, res) {
 };
 
 //Handle Bicycle create on POST
-exports.bicycle_create_post = function(req, res) {
-	res.send('NOT IMPLEMENTED: Bicycle create on POST');
+exports.bicycle_create_post = async function(req, res) {
+	console.log(req.body)
+	let document = new Bicycle();
+	document.wheels = req.body.wheels;
+	document.color = req.body.color;
+	document.brand = req.body.brand;
+	try{
+		let result = await document.save();
+		res.send(result);
+	}
+	catch(err){
+		res.status(500);
+		res.send(`{"error": ${err}}`);
+	}
 };
 
 //Handle Bicycle delete from on DELETE
