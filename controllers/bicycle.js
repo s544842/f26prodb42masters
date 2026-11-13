@@ -47,8 +47,23 @@ exports.bicycle_delete = function(req, res) {
 };
 
 //Handle Bicycle update form on PUT
-exports.bicycle_update_put = function(req, res) {
-	res.send('NOT IMPLEMENTED: Bicycle update PUT ' + req.params.id);
+exports.bicycle_update_put = async function(req, res) {
+	console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`);
+	try{
+		let toUpdate = await Bicycle.findById(req.params.id);
+		if(req.body.wheels)
+			toUpdate.wheels = req.body.wheels;
+		if(req.body.color)
+			toUpdate.color = req.body.color;
+		if(req.body.brand)
+			toUpdate.brand = req.body.brand;
+		let result = await toUpdate.save();
+		console.log("Success " + result);
+		res.send(result);
+	} catch(err){
+		res.status(500);
+		res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+	}
 };
 
 //show all view
