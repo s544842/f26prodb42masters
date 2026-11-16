@@ -1,0 +1,43 @@
+extends layout
+
+block content
+	h1=title
+
+	-let bicycleid = toShow._id
+	-let wheels = toShow.wheels
+	-let color = toShow.color
+	-let brand = toShow.brand
+
+	div.row(class='mb-2')
+		div.mr-1 ID is
+		div #{bicycleid}
+		-let actionid = "/resource/bicycle/" + bicycleid
+	form(id='BicycleForm', action= actionid, method='PUT')
+		div.form-group
+			label.bicycleAttr(for='wheels') Wheels
+			input#wheels(type='number', name='wheels', value= wheels)
+		div.form-group
+			label.bicycleAttr(for='color') Color
+			input#color(type='text', name='color', value= color)
+		div.form-group
+			label.bicycleAttr(for='brand') Brand
+			input#brand(type='text', name='brand', value= brand)
+		input(type='submit')
+
+	script.
+		document.forms['BicycleForm'].addEventListener('submit', (event) => {
+			event.preventDefault();
+			//TODO form submission
+			fetch(event.target.action, {
+				method: 'PUT',
+				body: new URLSearchParams(new FormData(event.target)) //event.target is the form
+				}).then((resp) => {
+					return resp.text();
+				}).then((body) => {
+					alert("Updated Successfully");
+					//TODO handle body
+				}).catch((err) => {
+					//TODO handle error
+					alert("Update failed: " + err);
+				});
+			});

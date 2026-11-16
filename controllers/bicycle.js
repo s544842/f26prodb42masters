@@ -113,3 +113,15 @@ exports.bicycle_create_page = function(req, res) {
 };
 
 //handle building view for updating bicycle
+//query provides id
+exports.bicycle_update_page = async function(req, res) {
+	console.log("update view for item " + req.query.id);
+	try{
+		let result = await Bicycle.findById(req.query.id);
+		res.render('bicycleupdate', {title: 'Bicycle Update', toShow:result});
+	}
+	catch(err){
+		res.status(500);
+		res.send(`{'error': '${err}'}`);
+	}
+};
