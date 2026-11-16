@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	h1=title
+
+	form(id='BicycleForm', action="/resource/bicycle", method="POST")
+		div.form-group
+			label.bicycleAttr(for='wheels') Wheels
+			input#wheels(type='number', name='wheels')
+		div.form-group
+			label.bicycleAttr(for='color') Color
+			input#color(type='text', name='color')
+		div.form-group
+			label.bicycleAttr(for='brand') Brand
+			input#brand(type='text', name='brand')
+		input(type='submit')
+
+	script.
+		document.forms['BicycleForm'].addEventListener('submit', (event) => {
+			event.preventDefault();
+			//TODO show user submission is successful
+			fetch(event.target.action, {
+				method: 'POST',
+				body: new URLSearchParams(new FormData(event.target)) //event.target is the form
+			}).then((resp) => {
+				return resp.json();
+			}).then((body) => {
+				alert("Saved successfully");
+				//TODO handle body
+			}).catch((err) => {
+				//TODO handle error
+				alert("Save failed: " + err);
+			});
+		});

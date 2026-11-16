@@ -99,3 +99,17 @@ exports.bicycle_view_one_page = async function(req, res) {
 		res.send(`{'error': '${err}'}`);
 	}
 };
+
+//handle building view for creating bicycle
+exports.bicycle_create_page = function(req, res) {
+	console.log("create view");
+	try{
+		res.render('bicyclecreate', {title: 'Bicycle Create'});
+	}
+	catch(err){
+		res.status(500);
+		res.send(`{'error': '${err}'}`);
+	}
+};
+
+//handle building view for updating bicycle
