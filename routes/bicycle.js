@@ -5,4 +5,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', bicycle_controllers.bicycle_view_all_page);
 
+/* GET detail bicycle page */
+router.get('/detail', bicycle_controllers.bicycle_view_one_page);
+
 module.exports = router;

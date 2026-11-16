@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	h1=title
+
+	- let bicycleid = toShow._id
+	- let wheels = toShow.wheels
+	- let color = toShow.color
+	- let brand = toShow.brand
+	div
+		div.row
+			div(class='bicycleAttr mr-3') Bicycle ID is:
+			div #{bicycleid}
+		div.row
+			div(class='bicycleAttr mr-3') Bicycle Wheels is:
+			div #{wheels}
+		div.row
+			div(class='bicycleAttr mr-3') Bicycle Color is:
+			div #{color}
+		div.row
+			div(class='bicycleAttr mr-3') Bicycle Brand is:
+			div #{brand}
+
