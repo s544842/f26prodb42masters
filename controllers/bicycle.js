@@ -42,8 +42,16 @@ exports.bicycle_create_post = async function(req, res) {
 };
 
 //Handle Bicycle delete from on DELETE
-exports.bicycle_delete = function(req, res) {
-	res.send('NOT IMPLEMENTED: Bicycle delete DELETE ' + req.params.id);
+exports.bicycle_delete = async function(req, res) {
+	console.log("DELETE " + req.params.id);
+	try{
+		result = await Bicycle.findByIdAndDelete(req.params.id);
+		console.log("Removed " + result + " successfully");
+		res.send(result);
+	} catch(err){
+		res.status(500);
+		res.send(`{"error": Error deleting ${err}}`);
+	}
 };
 
 //Handle Bicycle update form on PUT
