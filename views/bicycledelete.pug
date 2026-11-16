@@ -1,0 +1,52 @@
+extends layout
+
+block content
+	h1=title
+
+	if(toShow == null)
+		h2 No instance to delete
+	else
+		-let bicycleid = toShow._id
+		-let wheels = toShow.wheels
+		-let color = toShow.color
+		-let brand = toShow.brand
+		-let actionid = "/resource/bicycle/" + bicycleid
+		script let actionid = "#{actionid}"
+		div
+			div.row
+				div(class='bicycleAttr mr-3') Bicycle ID is:
+				div #{bicycleid}
+			div.row
+				div(class='bicycleAttr mr-3') Wheels is:
+				div #{wheels}
+			div.row
+				div(class='bicycleAttr mr-3') Color is:
+				div #{color}
+			div.row
+				div(class='bicycleAttr mr-3') Brand is:
+				div #{brand}
+		button(class='btn btn-danger m-2' onclick='deleteOnid()') Delete
+		button(class='btn btn-secondary m-2' onclick='cancel()') Cancel
+	
+	script.
+		function cancel() {
+			//go back to home page for bicycle collection
+			window.location.href='/bicycle'
+		}
+	script.
+		function deleteOnid() {
+			console.log("starting delete")
+			//delete first
+			fetch(actionid, {
+				method: 'DELETE'
+			}).then((resp) => {
+				return resp.json();
+			}).then((body) => {
+				alert("Deleted Successfully")
+				window.location.href='/bicycle'
+				//TODO handle body
+			}).catch((err) => {
+				//TODO handle error
+				alert("Delete failed: " + err)
+			});
+		}

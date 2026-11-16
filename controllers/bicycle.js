@@ -125,3 +125,16 @@ exports.bicycle_update_page = async function(req, res) {
 		res.send(`{'error': '${err}'}`);
 	}
 };
+
+//handle delete one view with id from query
+exports.bicycle_delete_page = async function(req, res) {
+	console.log("Delete view for id " + req.query.id);
+	try{
+		result = await Bicycle.findById(req.query.id);
+		res.render('bicycledelete', {title: 'Costume Delete', toShow: result});
+	}
+	catch(err){
+		res.status(500);
+		res.send(`{'error': '${err}'}`);
+	}
+};

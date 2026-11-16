@@ -14,4 +14,7 @@ router.get('/create', bicycle_controllers.bicycle_create_page);
 /* GET create update page */
 router.get('/update', bicycle_controllers.bicycle_update_page);
 
+/* GET delete costume page */
+router.get('/delete', bicycle_controllers.bicycle_delete_page);
+
 module.exports = router;
