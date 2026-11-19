@@ -16,8 +16,10 @@ block content
 				- let destination = `dispatch(\"/bicycle/update/?id=${item._id}\")`
 				div(class="col-sm-2") Bicycle #{index} - Wheels: #{item.wheels}, Color: #{item.color}, Brand: #{item.brand}
 					br
-					button.btn(class="btn-primary m1-1", onclick= destination) Update
-					button.btn(class="btn-primary m1-1", onclick=`buy(${index})`) Buy
+					button.btn(class="btn-primary m1-1", onclick= `dispatch(\"/bicycle/update/?id=${item._id}\")`) Update
+					button.btn(class="btn-primary m1-1", onclick= `dispatch(\"/bicycle/detail/?id=${item._id}\")`) Details
+					button.btn(class="btn-primary m1-1", onclick= `buy(${index})`) Buy
+					button.btn(class="btn-danger m1-1", onclick= `dispatch(\"/bicycle/delete/?id=${item._id}\")`) DELETE
 	
 	script.
 		function dispatch(path){

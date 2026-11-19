@@ -20,7 +20,10 @@ router.get('/', bicycle_controllers.bicycle_view_all_page);
 router.get('/detail', bicycle_controllers.bicycle_view_one_page);
 
 /* GET create bicycle page */
-router.get('/create', bicycle_controllers.bicycle_create_page);
+router.get('/create', secured, bicycle_controllers.bicycle_create_page);
+router.post('/login', passport.authenticate('local'), function(req, res) {
+	res.redirect('/');
+});
 
 /* GET create update page */
 router.get('/update', secured, bicycle_controllers.bicycle_update_page);
@@ -29,6 +32,9 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 });
 
 /* GET delete costume page */
-router.get('/delete', bicycle_controllers.bicycle_delete_page);
+router.get('/delete', secured, bicycle_controllers.bicycle_delete_page);
+router.post('/login', passport.authenticate('local'), function(req, res) {
+	res.redirect('/');
+});
 
 module.exports = router;
